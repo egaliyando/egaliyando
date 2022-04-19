@@ -3,7 +3,7 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=egaliyando&label=Profile%20views&color=0e75b6&style=flat" alt="egaliyando" /> </p>
 
-- 🔭 I’m currently working on [Dalenta](https://dalenta.com/)
+- 🔭 I’m currently working on [Pandatech](https://pandatech.io/)
 
 - 🌱 I’m currently learning UI & UX Design **Figma**
 
