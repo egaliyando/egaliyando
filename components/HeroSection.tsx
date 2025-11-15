@@ -89,9 +89,13 @@ export default function HeroSection() {
             >
               Hire Me
             </button>
-            <button className="flex-1 border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 text-gray-800 dark:text-gray-300 px-6 py-3 rounded-lg font-medium transition-colors">
+            <a 
+              href="/CV-Ega-Liyando-2025.pdf" 
+              download="CV Ega Liyando 2025.pdf"
+              className="flex-1 border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 text-gray-800 dark:text-gray-300 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center text-center"
+            >
               Download CV
-            </button>
+            </a>
           </div>
 
           {/* Stats */}
@@ -165,9 +169,13 @@ export default function HeroSection() {
               >
                 Hire Me
               </button>
-              <button className="border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 text-gray-800 dark:text-gray-300 px-8 py-3 rounded-lg font-medium transition-colors">
+              <a 
+                href="/CV-Ega-Liyando-2025.pdf" 
+                download="CV Ega Liyando 2025.pdf"
+                className="border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 text-gray-800 dark:text-gray-300 px-8 py-3 rounded-lg font-medium transition-colors flex items-center justify-center"
+              >
                 Download CV
-              </button>
+              </a>
             </div>
 
             {/* Stats */}

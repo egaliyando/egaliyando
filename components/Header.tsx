@@ -2,10 +2,11 @@
 
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   const navItems = [
     { label: 'Home', href: '#home' },
@@ -13,6 +14,27 @@ export default function Header() {
     { label: 'Portfolio', href: '#portfolio' },
     { label: 'Contact me', href: '#contact' },
   ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'portfolio', 'contact']
+      const headerOffset = 100
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          const elementPosition = element.getBoundingClientRect().top
+          if (elementPosition <= headerOffset && element.getBoundingClientRect().bottom > headerOffset) {
+            setActiveSection(sectionId)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement>, href: string) => {
     e.preventDefault()
@@ -53,18 +75,22 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item, index) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className={`text-sm cursor-pointer ${
-                  index === 0 ? 'text-sky-500 font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                } transition-colors`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const sectionId = item.href.replace('#', '')
+              const isActive = activeSection === sectionId
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className={`text-sm cursor-pointer transition-colors ${
+                    isActive ? 'text-sky-500 font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
           </nav>
 
           {/* CTA Button */}
@@ -79,18 +105,22 @@ export default function Header() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 space-y-4">
-            {navItems.map((item, index) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className={`block text-base cursor-pointer ${
-                  index === 0 ? 'text-sky-500 font-semibold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                } transition-colors`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const sectionId = item.href.replace('#', '')
+              const isActive = activeSection === sectionId
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className={`block text-base cursor-pointer transition-colors ${
+                    isActive ? 'text-sky-500 font-semibold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
           </nav>
         )}
       </div>
