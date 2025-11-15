@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 26 26 26;
+  }
+
+  .dark {
+    --background: 26 26 26;
+    --foreground: 229 229 229;
+  }
+}
+
+@layer components {
+  /* Primary Gradient - Text */
+  .text-primary-gradient {
+    @apply bg-gradient-to-t from-blue-500 to-sky-500 bg-clip-text text-transparent;
+  }
+
+  /* Primary Gradient - Background */
+  .bg-primary-gradient {
+    @apply bg-gradient-to-t from-blue-500 to-sky-500;
+  }
+
+  /* Primary Gradient - Button (with text white) */
+  .btn-primary-gradient {
+    @apply bg-gradient-to-t from-blue-500 to-sky-500 text-white hover:from-blue-600 hover:to-sky-600;
+  }
+
+  /* Primary Gradient - Border gradient effect using shadow */
+  .border-primary-gradient {
+    @apply border-2 border-transparent bg-gradient-to-t from-blue-500 to-sky-500 bg-clip-border;
+  }
+}
+
+body {
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
